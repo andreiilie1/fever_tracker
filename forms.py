@@ -3,11 +3,10 @@ from __future__ import annotations
 from datetime import date, datetime
 
 import streamlit as st
-
 from db import (
+    add_measurement,
     add_medication,
     add_medication_name,
-    add_measurement,
     fetch_medication_names,
 )
 from utils.time import iso_from_date_time

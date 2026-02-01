@@ -2,7 +2,6 @@ from __future__ import annotations
 
 import sqlite3
 from pathlib import Path
-from typing import Iterable, Optional, Tuple
 
 import pandas as pd
 
@@ -95,7 +94,7 @@ def delete_medication_name(row_id: int) -> None:
 
 # Write operations
 def add_measurement(
-    recorded_at_iso: str, temperature_c: float, notes: Optional[str] = None
+    recorded_at_iso: str, temperature_c: float, notes: str | None = None
 ) -> int:
     with _get_connection() as conn:
         cur = conn.execute(
@@ -108,8 +107,8 @@ def add_measurement(
 def add_medication(
     given_at_iso: str,
     med_name: str,
-    dose_desc: Optional[str] = None,
-    notes: Optional[str] = None,
+    dose_desc: str | None = None,
+    notes: str | None = None,
 ) -> int:
     with _get_connection() as conn:
         cur = conn.execute(
@@ -120,7 +119,7 @@ def add_medication(
 
 
 def update_measurement(
-    row_id: int, recorded_at_iso: str, temperature_c: float, notes: Optional[str]
+    row_id: int, recorded_at_iso: str, temperature_c: float, notes: str | None
 ) -> None:
     with _get_connection() as conn:
         conn.execute(
@@ -133,8 +132,8 @@ def update_medication(
     row_id: int,
     given_at_iso: str,
     med_name: str,
-    dose_desc: Optional[str],
-    notes: Optional[str],
+    dose_desc: str | None,
+    notes: str | None,
 ) -> None:
     with _get_connection() as conn:
         conn.execute(
@@ -144,7 +143,7 @@ def update_medication(
 
 
 # Read operations
-def fetch_measurements(limit: Optional[int] = None) -> pd.DataFrame:
+def fetch_measurements(limit: int | None = None) -> pd.DataFrame:
     query = "SELECT id, recorded_at, temperature_c, notes FROM measurements ORDER BY recorded_at ASC"
     if limit is not None:
         query += f" LIMIT {int(limit)}"
@@ -153,7 +152,7 @@ def fetch_measurements(limit: Optional[int] = None) -> pd.DataFrame:
     return df
 
 
-def fetch_medications(limit: Optional[int] = None) -> pd.DataFrame:
+def fetch_medications(limit: int | None = None) -> pd.DataFrame:
     query = "SELECT id, given_at, med_name, dose_desc, notes FROM medications ORDER BY given_at ASC"
     if limit is not None:
         query += f" LIMIT {int(limit)}"

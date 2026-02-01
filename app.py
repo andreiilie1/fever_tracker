@@ -1,28 +1,24 @@
 from __future__ import annotations
 
-from typing import Optional
-
 import pandas as pd
 import streamlit as st
-
+from charts import build_temperature_figure
 from db import (
-    add_medication,
     add_measurement,
+    add_medication,
+    add_medication_name,
     delete_entry,
+    delete_medication_name,
     export_table_as_csv,
+    fetch_measurements,
     fetch_medication_names,
     fetch_medications,
-    fetch_measurements,
     initialize_database,
-    add_medication_name,
-    update_medication_name,
-    delete_medication_name,
-    update_medication,
     update_measurement,
+    update_medication,
+    update_medication_name,
 )
-
 from forms import render_add_measurement_form, render_add_medication_form
-from charts import build_temperature_figure
 from utils.time import to_iso_minutes_string
 
 #
