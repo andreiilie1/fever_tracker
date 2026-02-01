@@ -56,7 +56,7 @@ def build_temperature_figure(
                 layer="below",
             )
             # Labels at the bottom; larger and bolder every 6 hours
-            is_major = (cur.hour % 6 == 0)
+            is_major = cur.hour % 6 == 0
             label_text = cur.strftime("%H:%M")
             if is_major:
                 label_text = f"<b>{label_text}</b>"
@@ -90,7 +90,10 @@ def build_temperature_figure(
             lane_idx = None
             for li in range(max_lanes):
                 last_time = lane_last_time[li]
-                if last_time is None or (t - last_time).total_seconds() / 60.0 >= window_minutes:
+                if (
+                    last_time is None
+                    or (t - last_time).total_seconds() / 60.0 >= window_minutes
+                ):
                     lane_idx = li
                     break
             if lane_idx is None:
@@ -212,4 +215,3 @@ def build_temperature_figure(
         headroom += extra
     fig.update_yaxes(range=[y_min - 0.5, y_max + headroom])
     return fig
-

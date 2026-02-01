@@ -24,4 +24,3 @@ def to_iso_minutes_string(s: str) -> str:
     except Exception:
         return str(s)
     return dt.strftime("%Y-%m-%dT%H:%M")
-

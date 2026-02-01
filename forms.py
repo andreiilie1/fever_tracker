@@ -81,4 +81,3 @@ def render_add_medication_form() -> None:
                     notes.strip() or None,
                 )
                 st.success("Medication added.")
-
