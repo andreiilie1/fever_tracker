@@ -48,6 +48,11 @@ streamlit run app.py
 - Browse and edit data in tables; delete with an undo option.
 - Export measurements and medications as CSV files.
 
+### Preview
+Example of the temperature time series with medication markers:
+
+![Chart preview](resources/chart_view.png)
+
 ### Data storage
 - All data is saved locally in `data.db` (SQLite).
 - The database is created on first run.
