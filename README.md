@@ -28,7 +28,7 @@ pip install -r requirements.txt
 3) Run the app:
 
 ```bash
-streamlit run vibe/app.py
+streamlit run app.py
 ```
 
 4) Open the URL shown in the terminal (usually `http://localhost:8501`) if a browser doesn’t open automatically.
@@ -38,7 +38,7 @@ streamlit run vibe/app.py
 python -m venv .venv
 .venv\Scripts\Activate.ps1
 pip install -r requirements.txt
-streamlit run vibe\app.py
+streamlit run app.py
 ```
 
 ### What you can do
@@ -49,30 +49,36 @@ streamlit run vibe\app.py
 - Export measurements and medications as CSV files.
 
 ### Data storage
-- All data is saved locally in `vibe/data.db` (SQLite).
+- All data is saved locally in `data.db` (SQLite).
 - The database is created on first run.
-- To reset data, stop the app and delete `vibe/data.db`.
+- To reset data, stop the app and delete `data.db`.
 
 ### Project structure
 ```
 .
+├── app.py
+├── charts.py
+├── constants.py
+├── db.py
+├── forms.py
+├── utils/
+│   └── time.py
 ├── requirements.txt
-└── vibe/
-    ├── app.py   # Streamlit UI and plotting
-    └── db.py    # SQLite schema and CRUD functions
+├── README.md
+└── data.db        # created on first run
 ```
 
 ### Configuration tips
 - Change the port:
 
 ```bash
-streamlit run vibe/app.py --server.port 8502
+streamlit run app.py --server.port 8502
 ```
 
 - Run headless (no browser auto-open):
 
 ```bash
-streamlit run vibe/app.py --server.headless true
+streamlit run app.py --server.headless true
 ```
 
 ### Notes
